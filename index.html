@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HW8</title>
+</head>
+<body>
+  <script>
+    const arrayInitial = [4, 5, 10, 3, 8, 6];
+    const arrayFinal = [];
+  
+    function mapArray(elem, number) {  
+      return elem * number;
+    }
+  
+    for(i=0; i< arrayInitial.length; i++){
+      arrayFinal.push(mapArray(arrayInitial[i], 2));
+    }
+
+    console.log(arrayFinal);
+
+
+    const arrayNoFilter = [1, 2, 3, 4, 5]
+    const arrayFiltered = [];
+
+    function filterArray(arr, elem) {
+      for (let i = 0; i < arrayNoFilter.length; i++) {
+        if (arrayNoFilter[i] !== elem) {
+          arrayFiltered.push(arrayNoFilter[i])
+        }
+      }
+      return arrayFiltered;
+    }
+    console.log(filterArray(arrayFiltered, 1));
+  
+  const notification = [
+    {
+      date: '31/07/2018',
+      msg: 'Green',
+    },
+    {
+      date: '2/08/2018',
+      msg: 'Blue'
+    },
+    {
+      date: '2/08/2018',
+      msg: 'Orange'
+    },
+    {
+      date: '31/07/2018',
+      msg: 'Purple'
+    },
+    {
+      date: '31/07/2018',
+      msg: 'Teal'
+    }
+  ];
+
+
+
+  const res = notification.reduce(function(accum, elem) {
+    const propertyName = elem.date;
+    if (!accum[propertyName]) {
+      accum[propertyName] = [];
+    }
+    accum[propertyName].push(elem.msg);
+
+    
+    return accum;
+  }, {});
+
+  console.log(res);
+
+
+  </script>
+</body>
+</html>
