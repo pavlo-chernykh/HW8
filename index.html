@@ -8,32 +8,71 @@
 </head>
 <body>
   <script>
-    const arrayInitial = [4, 5, 10, 3, 8, 6];
-    const arrayFinal = [];
+  const arrayNoMap = [4, 5, 10, 3, 8, 6];
   
-    function mapArray(elem, number) {  
-      return elem * number;
+    function mapArray(arrayName, callback) {
+      const arrayFinal = [];
+      for(i=0; i< arrayName.length; i++){
+        const element = callback(arrayName[i], i, arrayName)
+        
+        arrayFinal.push(element)
+      }
+      return arrayFinal;
     }
-  
-    for(i=0; i< arrayInitial.length; i++){
-      arrayFinal.push(mapArray(arrayInitial[i], 2));
-    }
 
-    console.log(arrayFinal);
+    const arrayF = mapArray(arrayNoMap, function(x) {
+      return x * 2;
+    });
+    const arrayFF = mapArray(arrayNoMap, function(x) {
+      return x ** 2;
+    });
 
+    console.log(arrayFF);
 
-    const arrayNoFilter = [1, 2, 3, 4, 5]
-    const arrayFiltered = [];
+    const arrayNoFilter = [
+      {
+        name: 'John',
+        salary: 12500
+      },
+      {
+        name: 'Alex',
+        salary: 13000
+      },
+      {
+        name: 'Mary',
+        salary: 11000
+      },
+      {
+        name: 'Paul',
+        salary: 18000
+      },
+      {
+        name: 'Kate',
+        salary: 16000
+      },
 
-    function filterArray(arr, elem) {
-      for (let i = 0; i < arrayNoFilter.length; i++) {
-        if (arrayNoFilter[i] !== elem) {
-          arrayFiltered.push(arrayNoFilter[i])
+    ]
+
+    function filterArray(arrayN, callback) {
+      const arrayFiltered = [];
+      
+      for (let i = 0; i < arrayN.length; i++) {
+
+        const condition = callback(arrayN[i], i, arrayN);
+
+        if (condition) {
+          arrayFiltered.push(arrayN[i])
         }
       }
       return arrayFiltered;
     }
-    console.log(filterArray(arrayFiltered, 1));
+    const filterArrayRes = filterArray(arrayNoFilter, function(x) {
+      const salary = x.salary;
+      return salary >= 17000;
+    })
+    console.log(filterArrayRes);
+
+  
   
   const notification = [
     {
